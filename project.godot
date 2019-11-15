@@ -15,7 +15,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="galactic-ghoul-odyssey"
+config/name="Space Shooter"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [rendering]
