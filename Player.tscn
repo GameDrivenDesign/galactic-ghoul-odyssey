@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Ships/spaceShips_004.png" type="Texture" id=2]
+[ext_resource path="res://Shield.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Shield.gd" type="Script" id=4]
+[ext_resource path="res://assets/circle_white.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 67.0339
@@ -24,3 +27,10 @@ drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
+
+[node name="Shield" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+
+[node name="Shield" type="Sprite" parent="Shield"]
+scale = Vector2( 0.255176, 0.267436 )
+texture = ExtResource( 5 )
