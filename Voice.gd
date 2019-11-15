@@ -26,6 +26,4 @@ func _process(delta):
 		$aeolia_c4.stop()
 		
 	$aeolia_c4.set_volume_db((-1.0 + current) * 100)
-	print("----")
-	print(current)
 	print($aeolia_c4.volume_db)
