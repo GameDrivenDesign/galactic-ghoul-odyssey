@@ -10,10 +10,7 @@ func _ready():
 
 	for current_midi_input in OS.get_connected_midi_inputs():
 		print(current_midi_input)
-		#$"Control/VBoxContainer/MidiInputsList".add_item(current_midi_input, null, false)
 
-
-# via <https://github.com/godotengine/godot/blob/master/core/os/input_event.h>
 enum GlobalScope_MidiMessageList {
 	MIDI_MESSAGE_NOTE_OFF = 0x8,
 	MIDI_MESSAGE_NOTE_ON = 0x9,
@@ -24,9 +21,7 @@ enum GlobalScope_MidiMessageList {
 	MIDI_MESSAGE_PITCH_BEND = 0xE,
 };
 
-
 const MIDI_EVENT_PROPERTIES = ["channel", "message", "pitch", "velocity", "instrument", "pressure", "controller_number", "controller_value"]
-
 
 func get_midi_message_description(event : InputEventMIDI):
 

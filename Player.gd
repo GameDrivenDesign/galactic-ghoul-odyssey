@@ -9,7 +9,6 @@ func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
 
-
 func note_on(pitch, velocity, channel):
 	print(pitch)
 	cannon_angle = (pitch - 48) * 10
@@ -37,4 +36,3 @@ func _process(delta):
 		velocity.y = -ACCELERATION
 	add_central_force(velocity)
 	# move_and_collide (velocity)
-
