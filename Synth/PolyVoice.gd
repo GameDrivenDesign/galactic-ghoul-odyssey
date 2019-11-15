@@ -3,7 +3,7 @@ extends Node
 export var voiceCount = 4
 
 var voices = {}
-var Voice = load("res://Voice.tscn")
+var Voice = load("res://Synth/Voice.tscn")
 
 func _on_MidiController_note_on(pitch, velocity, channel):
 	if channel != 0:

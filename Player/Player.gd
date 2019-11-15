@@ -16,7 +16,7 @@ func note_on(pitch, velocity, channel):
 	
 func note_off(pitch, velocity, channel):
 	var direction = Vector2(0, -100).rotated($Cannon.rotation)
-	var projectile = preload("res://Projectile.tscn").instance()
+	var projectile = preload("res://Player/Projectile.tscn").instance()
 	projectile.rotation_degrees = $Cannon.rotation_degrees
 	projectile.position = direction + position
 	get_parent().add_child(projectile)
