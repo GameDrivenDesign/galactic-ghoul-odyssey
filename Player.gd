@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var velocity = Vector2(0, 0)
-const ACCELERATION = 20
+const ACCELERATION = 300
 
 func _ready():
 	pass
