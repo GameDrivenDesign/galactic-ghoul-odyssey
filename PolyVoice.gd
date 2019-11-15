@@ -12,10 +12,14 @@ func _ready():
 	pass
 		
 		
-func _on_MidiController_note_on(pitch, velocity):
+func _on_MidiController_note_on(pitch, velocity, channel):
+	if channel != 0:
+		return
 	play(pitch)
 	
-func _on_MidiController_note_off(pitch, velocity):
+func _on_MidiController_note_off(pitch, velocity, channel):
+	if channel != 0:
+		return
 	stop(pitch)
 		
 # TODO: this is very bad

@@ -1,7 +1,7 @@
 extends Node
 
-signal note_off(pitch, velocity)
-signal note_on(pitch, velocity)
+signal note_off(pitch, velocity, channel)
+signal note_on(pitch, velocity, channel)
 
 func _ready():
 	OS.open_midi_inputs()
@@ -39,7 +39,7 @@ func _unhandled_input(event : InputEvent):
 	if (event is InputEventMIDI):
 		match event.message:
 			MIDI_MESSAGE_NOTE_ON:
-				emit_signal("note_on", event.pitch, event.velocity)
+				emit_signal("note_on",  event.pitch, event.velocity, event.channel)
 
 			MIDI_MESSAGE_NOTE_OFF:
-				emit_signal("note_off", event.pitch, event.velocity)
+				emit_signal("note_off", event.pitch, event.velocity, event.channel)

@@ -10,12 +10,12 @@ func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
 
-func note_on(pitch, velocity):
+func note_on(pitch, velocity, channel):
 	print(pitch)
 	cannon_angle = (pitch - 48) * 10
 	charge_start_time = OS.get_ticks_msec()
 	
-func note_off(pitch, velocity):
+func note_off(pitch, velocity, channel):
 	var direction = Vector2(0, -100).rotated($Cannon.rotation)
 	print(pitch)
 	var projectile = preload("res://Projectile.tscn").instance()
@@ -43,6 +43,6 @@ func _process(delta):
 
 
 
-func _on_MidiController_note_on(pitch, velocity):
+func _on_MidiController_note_on(pitch, velocity, channel):
 	print(pitch)
 	pass # Replace with function body.
