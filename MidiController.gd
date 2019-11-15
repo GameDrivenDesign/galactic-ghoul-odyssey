@@ -1,7 +1,7 @@
 extends Node
 
-signal note_off(pitch)
-signal note_on(pitch)
+signal note_off(pitch, velocity)
+signal note_on(pitch, velocity)
 
 func _ready():
 	OS.open_midi_inputs()
@@ -40,8 +40,8 @@ func _unhandled_input(event : InputEvent):
 		match event.message:
 			MIDI_MESSAGE_NOTE_ON:
 				$PolyVoice.play(event.pitch)
-				emit_signal("note_on", event.pitch)
+				emit_signal("note_on", event.pitch, event.velocity)
 
 			MIDI_MESSAGE_NOTE_OFF:
 				$PolyVoice.stop(event.pitch)
-				emit_signal("note_off", event.pitch)
+				emit_signal("note_off", event.pitch, event.velocity)
