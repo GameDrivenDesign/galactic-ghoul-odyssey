@@ -39,3 +39,10 @@ func _process(delta):
 		velocity.y = -ACCELERATION
 	add_central_force(velocity)
 	# move_and_collide (velocity)
+
+
+
+
+func _on_MidiController_note_on(pitch, velocity):
+	print(pitch)
+	pass # Replace with function body.
