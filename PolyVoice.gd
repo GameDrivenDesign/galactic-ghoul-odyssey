@@ -24,8 +24,9 @@ func _on_MidiController_note_off(pitch, velocity, channel):
 		
 # TODO: this is very bad
 func play(pitch):
-	voices[pitch] = Voice.instance()
-	add_child(voices[pitch])
+	if !voices.has(pitch):
+		voices[pitch] = Voice.instance()
+		add_child(voices[pitch])
 	voices[pitch].play(pitch)
 	
 func stop(pitch):
