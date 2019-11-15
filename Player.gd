@@ -7,6 +7,11 @@ func _ready():
 	pass
 
 func _process(delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		var projectile = preload("res://Projectile.tscn").instance()
+		projectile.position = position
+		get_parent().add_child(projectile)
+	
 	velocity = Vector2(0,0)
 	#velocity *= 0.99
 	if Input.is_action_pressed("ui_right"):
