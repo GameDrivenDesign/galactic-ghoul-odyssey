@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceAstronauts_014.png-b8597fd7fc6cf106edd34be37f22cf6d.stex"
+path="res://.import/spaceAstronauts_014.png-8664daf11a7a01f2dbc051de5a573d00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_spaceshooterextension/PNG/Sprites/Astronauts/spaceAstronauts_014.png"
-dest_files=[ "res://.import/spaceAstronauts_014.png-b8597fd7fc6cf106edd34be37f22cf6d.stex" ]
+source_file="res://assets/kenney_spaceshooterextension/PNG/Sprites/Astronauts/spaceAstronauts_014.png"
+dest_files=[ "res://.import/spaceAstronauts_014.png-8664daf11a7a01f2dbc051de5a573d00.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceParts_092.png-a7e1ab78c74fd8e937e20e5a187dcb4c.stex"
+path="res://.import/spaceParts_092.png-5d9970d51e309058965b1ebf8710318c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_spaceshooterextension/PNG/Sprites/Parts/spaceParts_092.png"
-dest_files=[ "res://.import/spaceParts_092.png-a7e1ab78c74fd8e937e20e5a187dcb4c.stex" ]
+source_file="res://assets/kenney_spaceshooterextension/PNG/Sprites/Parts/spaceParts_092.png"
+dest_files=[ "res://.import/spaceParts_092.png-5d9970d51e309058965b1ebf8710318c.stex" ]
 
 [params]
 

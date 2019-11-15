@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceMissiles_018.png-7e9b3ba0d01ec013fab774a0fa0f077c.stex"
+path="res://.import/spaceMissiles_018.png-4d976fe8c64ba9777892a7fa4ec7be62.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_spaceshooterextension/PNG/Sprites X2/Missiles/spaceMissiles_018.png"
-dest_files=[ "res://.import/spaceMissiles_018.png-7e9b3ba0d01ec013fab774a0fa0f077c.stex" ]
+source_file="res://assets/kenney_spaceshooterextension/PNG/Sprites X2/Missiles/spaceMissiles_018.png"
+dest_files=[ "res://.import/spaceMissiles_018.png-4d976fe8c64ba9777892a7fa4ec7be62.stex" ]
 
 [params]
 

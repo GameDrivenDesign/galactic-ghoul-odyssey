@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceShooter2_spritesheet_2X.png-9d6393b1cd4df56509b436ff24540dd2.stex"
+path="res://.import/spaceShooter2_spritesheet_2X.png-7c6728bf0f53899dfb67bca9d52c2f1c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_spaceshooterextension/Spritesheet/spaceShooter2_spritesheet_2X.png"
-dest_files=[ "res://.import/spaceShooter2_spritesheet_2X.png-9d6393b1cd4df56509b436ff24540dd2.stex" ]
+source_file="res://assets/kenney_spaceshooterextension/Spritesheet/spaceShooter2_spritesheet_2X.png"
+dest_files=[ "res://.import/spaceShooter2_spritesheet_2X.png-7c6728bf0f53899dfb67bca9d52c2f1c.stex" ]
 
 [params]
 

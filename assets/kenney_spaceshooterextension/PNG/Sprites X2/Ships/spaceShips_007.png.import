@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceShips_007.png-07ec3c488d89eb6e7e7894638d97bfda.stex"
+path="res://.import/spaceShips_007.png-34a054e39370d46331e85edb56b3278f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_spaceshooterextension/PNG/Sprites X2/Ships/spaceShips_007.png"
-dest_files=[ "res://.import/spaceShips_007.png-07ec3c488d89eb6e7e7894638d97bfda.stex" ]
+source_file="res://assets/kenney_spaceshooterextension/PNG/Sprites X2/Ships/spaceShips_007.png"
+dest_files=[ "res://.import/spaceShips_007.png-34a054e39370d46331e85edb56b3278f.stex" ]
 
 [params]
 
