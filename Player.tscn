@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 67.0339
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="RigidBody2D"]
+mass = 10.0
+linear_damp = 4.0
 script = ExtResource( 1 )
 
 [node name="spaceShips_004" type="Sprite" parent="."]
