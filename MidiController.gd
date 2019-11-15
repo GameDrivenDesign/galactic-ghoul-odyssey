@@ -39,9 +39,7 @@ func _unhandled_input(event : InputEvent):
 	if (event is InputEventMIDI):
 		match event.message:
 			MIDI_MESSAGE_NOTE_ON:
-				$PolyVoice.play(event.pitch)
 				emit_signal("note_on", event.pitch, event.velocity)
 
 			MIDI_MESSAGE_NOTE_OFF:
-				$PolyVoice.stop(event.pitch)
 				emit_signal("note_off", event.pitch, event.velocity)

@@ -12,6 +12,12 @@ func _ready():
 	pass
 		
 		
+func _on_MidiController_note_on(pitch, velocity):
+	play(pitch)
+	
+func _on_MidiController_note_off(pitch, velocity):
+	stop(pitch)
+		
 # TODO: this is very bad
 func play(pitch):
 	voices[pitch] = Voice.instance()
