@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Comet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MidiController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PolyVoice.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node2D"]
 
@@ -28,3 +29,7 @@ position = Vector2( 804, 255 )
 position = Vector2( 485, 62 )
 
 [node name="MidiController" parent="." instance=ExtResource( 3 )]
+
+[node name="PolyVoice" parent="." instance=ExtResource( 4 )]
+[connection signal="note_off" from="MidiController" to="PolyVoice" method="_on_MidiController_note_off"]
+[connection signal="note_on" from="MidiController" to="PolyVoice" method="_on_MidiController_note_on"]
