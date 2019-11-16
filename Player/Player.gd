@@ -44,14 +44,14 @@ func shoot():
 	get_parent().add_child(projectile)
 	projectile.apply_central_impulse(linear_velocity + direction * 2 * max((OS.get_ticks_msec() - charge_start_time) / 200, 1))
 
-func calculate_velocity_from_input():
+func calculate_velocity_from_input(delta):
 	velocity = Vector2(0,0)
 	
-	if movement_energy < 1.0:
+	if movement_energy < delta:
 		return velocity
 		
 	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_up"):
-		movement_energy -= 1.0
+		movement_energy -= delta
 	
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = ACCELERATION
@@ -71,7 +71,7 @@ func _process(delta):
 		charge_start_time = OS.get_ticks_msec()
 		shoot()
 	
-	var velocity = calculate_velocity_from_input()
+	var velocity = calculate_velocity_from_input(delta)
 	
 	add_central_force(velocity)
 	# move_and_collide (velocity)
