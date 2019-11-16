@@ -53,7 +53,7 @@ motion_mirroring = Vector2( 1024, 600 )
 position = Vector2( 633.671, 289.698 )
 texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 4096, 2400 )
+region_rect = Rect2( 0, 0, 8000, 5000 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
