@@ -23,6 +23,7 @@ func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
 
+	disable_key(pitch)
 	pressed_keys.append(pitch)
 	if len(pressed_keys) == 3:
 		if energy < 1.0:
@@ -33,10 +34,10 @@ func note_on(pitch, velocity, channel):
 func note_off(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
-		
+	
 	$"../PolyVoiceShield".stop(pitch)
 	
-	pressed_keys.erase(pitch)
+	disable_key(pitch)
 
 const ADD_BRIGHTNESS = 0.1
 
@@ -47,6 +48,10 @@ func _draw():
 		draw_circle(Vector2(0, 0), 170 + i * 20,
 			Color(shield.color.r + ADD_BRIGHTNESS, shield.color.g + ADD_BRIGHTNESS, shield.color.b + ADD_BRIGHTNESS, shield.time))
 		i = i - 1
+
+func disable_key(pitch):
+	while pressed_keys.has(pitch):
+		pressed_keys.erase(pitch)
 
 func _process(delta):
 	for pitch in pressed_keys:
@@ -60,6 +65,12 @@ func _process(delta):
 		if shield['time'] <= 0:
 			active_shields.erase(shield)
 	update()
+	
+	var voices = $"../PolyVoiceShield".voices
+	for v in voices:
+		if voices[v].active:
+			voices[v].active = $"../../MidiController".is_note_active(voices[v].pitch, MIDI_CHANNEL)
+			#print(voices[v].pitch)
 
 func get_shield_of_color(color):
 	for shield in active_shields:
@@ -73,11 +84,10 @@ func get_shield_of_color(color):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func analyze_chords(notes):
 	notes.sort()
-#	if (notes[2] - notes[1] > 4):
-#		notes[2] -= 12
-#	if (notes[1] - notes[0] > 4):
-#		notes[0] += 12
-#   print("Notes: " + str(notes[2] - notes[1]) + " " + str(notes[1] - notes[0]))
+	if (notes[2] - notes[1] > 4):
+		notes[2] -= 12
+	if (notes[1] - notes[0] > 4):
+		notes[0] += 12
 	if notes[2] - notes[1] == 3:
 		if notes[1] - notes[0] == 4:
 			get_shield_of_color(Color(0, 1, 0))

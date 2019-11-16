@@ -21,20 +21,36 @@ enum GlobalScope_MidiMessageList {
 	MIDI_MESSAGE_PITCH_BEND = 0xE,
 };
 
-const MIDI_EVENT_PROPERTIES = ["channel", "message", "pitch", "velocity", "instrument", "pressure", "controller_number", "controller_value"]
+var notes_held = []
 
-func get_midi_message_description(event : InputEventMIDI):
+func _process(delta):
+	pass
+	# print(notes_held)
+#	while notes_held.size() > 0:
+#		if notes_held[0].timestamp + 1000 < OS.get_ticks_msec():
+#			var note = notes_held[0]
+#			print("KILL")
+#			notes_held.remove(0)
+#			emit_signal("note_off", note.pitch, 64, note.channel)
+#		else:
+#			break
 
-	if GlobalScope_MidiMessageList.values().has(event.message):
-		return GlobalScope_MidiMessageList.keys()[event.message - 0x08]
-	return event.message
+func is_note_active(pitch, channel):
+	for note in notes_held:
+		if note.pitch == pitch and note.channel == channel:
+			return true
+	return false
 
-func _unhandled_input(event : InputEvent):
-
-	if (event is InputEventMIDI):
+func _unhandled_input(event: InputEvent):
+	if event is InputEventMIDI:
 		match event.message:
 			MIDI_MESSAGE_NOTE_ON:
+				notes_held.append({'channel': event.channel, 'pitch': event.pitch, 'timestamp': OS.get_ticks_msec()})
 				emit_signal("note_on",  event.pitch, event.velocity, event.channel)
 
 			MIDI_MESSAGE_NOTE_OFF:
+				for note in notes_held:
+					if note.pitch == event.pitch && note.channel == event.channel:
+						notes_held.erase(note)
+						break
 				emit_signal("note_off", event.pitch, event.velocity, event.channel)

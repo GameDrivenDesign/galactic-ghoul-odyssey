@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=6 format=2]
+[gd_resource type="AudioBusLayout" load_steps=7 format=2]
 
 [sub_resource type="AudioEffectCompressor" id=1]
 resource_name = "Compressor"
@@ -17,14 +17,17 @@ wet = 0.34
 [sub_resource type="AudioEffectCompressor" id=5]
 resource_name = "Compressor"
 
+[sub_resource type="AudioEffectCompressor" id=6]
+resource_name = "Compressor"
+
 [resource]
 bus/0/effect/0/effect = SubResource( 1 )
-bus/0/effect/0/enabled = true
+bus/0/effect/0/enabled = false
 bus/1/name = "Drums"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = 1.7
 bus/1/send = "Master"
 bus/1/effect/0/effect = SubResource( 2 )
 bus/1/effect/0/enabled = true
@@ -40,3 +43,11 @@ bus/2/effect/0/effect = SubResource( 4 )
 bus/2/effect/0/enabled = true
 bus/2/effect/1/effect = SubResource( 5 )
 bus/2/effect/1/enabled = true
+bus/3/name = "Shield"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = "Master"
+bus/3/effect/0/effect = SubResource( 6 )
+bus/3/effect/0/enabled = true

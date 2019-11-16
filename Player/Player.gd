@@ -9,7 +9,7 @@ const MIDI_CHANNEL = 1
 
 var cannon_energy = 0.0
 var movement_energy = 0.0
-const MAX_HITPOINTS = 100
+const MAX_HITPOINTS = 1000
 var hitpoints = MAX_HITPOINTS
 
 var shake_amplitude = 0
@@ -30,13 +30,14 @@ func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
 	
+	$PolyVoiceCannon.note_off(pitch, velocity, channel)
+	
 	if cannon_energy < 1.0:
 		return
 	cannon_energy -= 1.0
 	
 	$PolyVoiceCannon.note_on(pitch, velocity, channel)
 	
-	print(pitch)
 	cannon_angle = (pitch - 48) * 10
 	charge_start_time = OS.get_ticks_msec()
 
@@ -54,7 +55,7 @@ func shoot():
 	projectile.rotation_degrees = $Cannon.global_rotation_degrees
 	projectile.position = direction + position
 	get_parent().add_child(projectile)
-	projectile.apply_central_impulse(linear_velocity + direction * 2 * max((OS.get_ticks_msec() - charge_start_time) / 200, 1))
+	projectile.apply_central_impulse(linear_velocity + direction * 5 * max((OS.get_ticks_msec() - charge_start_time) / 200, 1))
 
 func calculate_velocity_from_input(delta):
 	velocity = Vector2(0,0)
@@ -98,6 +99,8 @@ func _process(delta):
 	$"UI/Hitpoints".value = hitpoints
 
 func _integrate_forces(state: Physics2DDirectBodyState):
+	angular_velocity = 0.0
+	rotation = 0.0
 	for i in range(state.get_contact_count()):
 		var contact = preload("res://contact_particles.tscn").instance()
 		contact.position = state.get_contact_local_position(i)

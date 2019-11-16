@@ -3,16 +3,16 @@ extends Node
 export var voiceCount = 4
 
 var voices = {}
-var Voice = load("res://Synth/ShieldVoice.tscn")
+var Voice = preload("res://Synth/ShieldVoice.tscn")
 
 func note_on(pitch, velocity, channel):
-	if channel != 0:
-		return
+#	if channel != 0:
+#		return
 	play(pitch)
 
 func note_off(pitch, velocity, channel):
-	if channel != 0:
-		return
+#	if channel != 0:
+#		return
 	stop(pitch)
 
 # TODO: this is very bad

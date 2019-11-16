@@ -6,13 +6,13 @@ var voices = {}
 var Voice = load("res://Synth/AttackVoice.tscn")
 
 func note_on(pitch, velocity, channel):
-	if channel != 0:
-		return
+	#if channel != 1:
+	#	return
 	play(pitch)
 
 func note_off(pitch, velocity, channel):
-	if channel != 0:
-		return
+	#if channel != 1:
+	#	return
 	stop(pitch)
 
 # TODO: this is very bad
