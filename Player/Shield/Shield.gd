@@ -5,6 +5,8 @@ var circle_scale = 1.0
 
 const MIDI_CHANNEL = 0
 
+var energy = 0.0
+
 func _ready():
 	get_node("../..//MidiController").connect("note_on", self, "note_on")
 	get_node("../..//MidiController").connect("note_off", self, "note_off")
@@ -12,6 +14,10 @@ func _ready():
 func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
+		
+	if energy < 1.0:
+		return
+	energy -= 1.0
 
 	pressed_keys.append(pitch)
 	if len(pressed_keys) == 3:

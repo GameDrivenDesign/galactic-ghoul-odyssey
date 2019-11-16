@@ -61,5 +61,5 @@ region_rect = Rect2( 0, 0, 4096, 2400 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 [connection signal="note_off" from="MidiController" to="PolyVoice" method="_on_MidiController_note_off"]
-[connection signal="note_on" from="MidiController" to="DrumSet" method="_on_MidiController_note_on"]
 [connection signal="note_on" from="MidiController" to="PolyVoice" method="_on_MidiController_note_on"]
+[connection signal="note_on" from="MidiController" to="DrumSet" method="_on_MidiController_note_on"]
