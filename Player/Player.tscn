@@ -6,14 +6,13 @@
 [ext_resource path="res://Player/Shield/Shield.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Shield/Shield.gd" type="Script" id=5]
 
-
-
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 67.0339
 
 [node name="Player" type="RigidBody2D"]
 mass = 10.0
+contacts_reported = 2
+contact_monitor = true
 linear_damp = 4.0
 script = ExtResource( 1 )
 

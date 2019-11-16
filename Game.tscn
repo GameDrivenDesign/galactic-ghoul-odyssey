@@ -35,5 +35,5 @@ position = Vector2( 485, 62 )
 
 [node name="DrumSet" parent="." instance=ExtResource( 5 )]
 [connection signal="note_off" from="MidiController" to="PolyVoice" method="_on_MidiController_note_off"]
-[connection signal="note_on" from="MidiController" to="DrumSet" method="_on_MidiController_note_on"]
 [connection signal="note_on" from="MidiController" to="PolyVoice" method="_on_MidiController_note_on"]
+[connection signal="note_on" from="MidiController" to="DrumSet" method="_on_MidiController_note_on"]
