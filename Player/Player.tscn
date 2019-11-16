@@ -8,7 +8,7 @@
 [ext_resource path="res://Synth/PolyVoice.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 67.0339
+radius = 143.211
 
 [node name="Player" type="RigidBody2D"]
 mass = 10.0
@@ -21,7 +21,7 @@ script = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="spaceShips_004" type="Sprite" parent="."]
-scale = Vector2( 0.05, 0.05 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -37,12 +37,12 @@ func note_off(pitch, velocity, channel):
 	shoot()
 
 func shoot():
-	var direction = Vector2(0, -100).rotated($Cannon.global_rotation)
+	var direction = Vector2(0, -200).rotated($Cannon.global_rotation)
 	var projectile = preload("res://Player/Projectile.tscn").instance()
 	projectile.rotation_degrees = $Cannon.global_rotation_degrees
 	projectile.position = direction + position
 	get_parent().add_child(projectile)
-	projectile.apply_central_impulse(direction * 2 * max((OS.get_ticks_msec() - charge_start_time) / 200, 1))
+	projectile.apply_central_impulse(linear_velocity + direction * 2 * max((OS.get_ticks_msec() - charge_start_time) / 200, 1))
 
 func calculate_velocity_from_input():
 	velocity = Vector2(0,0)

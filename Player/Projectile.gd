@@ -11,7 +11,7 @@ func _integrate_forces(state: Physics2DDirectBodyState):
 		queue_free()
 		
 		var collider = state.get_contact_collider_object(i)
-		if collider.get("hitpoints") != null:
+		if collider and collider.get("hitpoints") != null:
 			collider.hitpoints -= 1
 			if collider.hitpoints <= 0:
 				collider.queue_free()
