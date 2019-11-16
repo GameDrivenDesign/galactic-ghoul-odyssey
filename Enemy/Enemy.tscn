@@ -15,4 +15,8 @@ autostart = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -58.232, -77.7566, -0.15451, -31.0551, 65.7065, -77.1578, 83.6686, 73.1251, 59.7192, 74.9214, 29.7823, 35.4047, -24.7027, 35.4047, -63.6206, 74.9214, -83.379, 72.5264 )
+
+[node name="change_color_timeout" type="Timer" parent="."]
+wait_time = 4.0
 [connection signal="timeout" from="shoot_timeout" to="." method="_on_shoot_timeout"]
+[connection signal="timeout" from="change_color_timeout" to="." method="_on_change_color_timeout"]
