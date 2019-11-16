@@ -15,3 +15,7 @@ func _integrate_forces(state: Physics2DDirectBodyState):
 			collider.hitpoints -= 1
 			if collider.hitpoints <= 0:
 				collider.queue_free()
+
+func set_projectile_color(color: Color):
+	$Sprite.modulate = color
+	$Particles2D.modulate = color

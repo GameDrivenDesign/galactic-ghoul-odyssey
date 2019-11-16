@@ -19,7 +19,8 @@ func note_on(pitch, velocity, channel):
 		return
 		
 	if energy < 1.0:
-		return
+		pass
+		#return
 	energy -= 1.0
 
 	pressed_keys.append(pitch)
@@ -31,11 +32,14 @@ func note_off(pitch, velocity, channel):
 		return
 	pressed_keys.erase(pitch)
 
+const ADD_BRIGHTNESS = 0.1
+
 func _draw():
 	var i = active_shields.size() - 1
 	for shield in active_shields:
 		draw_circle(Vector2(0, 0), 170 + i * 20, Color(0.18, 0.19, 0.211))
-		draw_circle(Vector2(0, 0), 170 + i * 20, Color(shield.color.r, shield.color.g, shield.color.b, shield.time))
+		draw_circle(Vector2(0, 0), 170 + i * 20,
+			Color(shield.color.r + ADD_BRIGHTNESS, shield.color.g + ADD_BRIGHTNESS, shield.color.b + ADD_BRIGHTNESS, shield.time))
 		i = i - 1
 
 func _process(delta):
