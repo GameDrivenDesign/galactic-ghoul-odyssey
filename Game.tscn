@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Comet.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Synth/PolyVoice.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Synth/DrumSet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/blue.png" type="Texture" id=6]
-[ext_resource path="res://hit_particles.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -56,9 +55,6 @@ position = Vector2( 512.671, 304.698 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4096, 2400 )
-
-[node name="hit_particles" parent="." instance=ExtResource( 7 )]
-position = Vector2( 352.591, 261.034 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
