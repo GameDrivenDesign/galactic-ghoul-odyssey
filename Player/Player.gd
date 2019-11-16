@@ -5,7 +5,7 @@ const ACCELERATION = 300
 var cannon_angle = 0
 var charge_start_time = 0
 
-const MIDI_CHANNEL = 0
+const MIDI_CHANNEL = 1
 
 var cannon_energy = 0.0
 var movement_energy = 0.0

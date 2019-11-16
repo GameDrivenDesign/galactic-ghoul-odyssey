@@ -46,41 +46,41 @@ offset = Vector2( 0.948525, -155.749 )
 [node name="PolyVoice" parent="." instance=ExtResource( 6 )]
 
 [node name="ShieldProgress" type="TextureProgress" parent="."]
-margin_left = -107.917
-margin_top = -13.1259
-margin_right = 359.083
-margin_bottom = 84.8741
-rect_scale = Vector2( 0.15, 0.15 )
+margin_left = -136.547
+margin_top = -25.5063
+margin_right = 330.453
+margin_bottom = 72.4937
+rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
 
 [node name="DrumProgress" type="TextureProgress" parent="."]
-margin_left = -34.6123
-margin_top = -35.3787
-margin_right = 432.388
-margin_bottom = 62.6213
-rect_scale = Vector2( 0.15, 0.15 )
+margin_left = -77.1701
+margin_top = -66.3298
+margin_right = 389.83
+margin_bottom = 31.6702
+rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
 
 [node name="MovementProgress" type="TextureProgress" parent="."]
-margin_left = 43.8213
-margin_top = -29.12
-margin_right = 510.821
-margin_bottom = 68.88
-rect_scale = Vector2( 0.15, 0.15 )
+margin_left = 17.5128
+margin_top = -38.4053
+margin_right = 484.513
+margin_bottom = 59.5947
+rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
 
 [node name="CannonProgress" type="TextureProgress" parent="."]
-margin_left = -31.8291
-margin_top = -143.449
-margin_right = 435.171
-margin_bottom = -45.4489
-rect_scale = Vector2( 0.15, 0.15 )
+margin_left = -58.9113
+margin_top = -162.793
+margin_right = 408.089
+margin_bottom = -64.7934
+rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 8 )

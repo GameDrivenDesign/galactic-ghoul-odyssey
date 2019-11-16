@@ -24,8 +24,7 @@ func note_on(pitch, velocity, channel):
 		return
 		
 	if energy < 1.0:
-		pass
-		#return
+		return
 	energy -= 1.0
 
 	pressed_keys.append(pitch)
