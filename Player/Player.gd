@@ -7,12 +7,37 @@ var charge_start_time = 0
 
 const MIDI_CHANNEL = 0
 
+onready var effect = get_node("effect")
+
 var cannon_energy = 0.0
 var movement_energy = 0.0
 
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
+	define_effects(get_node("spaceperson1"))
+	define_effects(get_node("spaceperson2"))
+	define_effects(get_node("spaceperson3"))
+	effect.start()
+
+func define_effects(sprite):
+	var old_vec = sprite.get_position()
+	var new_vec = old_vec
+	new_vec.y = new_vec.y - 5
+	effect.interpolate_property(sprite,
+		'position',
+		old_vec,
+		new_vec,
+		0.3,
+		Tween.TRANS_BOUNCE,
+		Tween.EASE_IN)
+	effect.interpolate_property(sprite,
+		'scale',
+		sprite.get_scale(),
+		Vector2(0.12, 0.12),
+		0.3,
+		Tween.TRANS_BOUNCE,
+		Tween.EASE_IN)
 
 func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
