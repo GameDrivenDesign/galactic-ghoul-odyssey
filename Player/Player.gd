@@ -12,6 +12,11 @@ var movement_energy = 0.0
 const MAX_HITPOINTS = 100
 var hitpoints = MAX_HITPOINTS
 
+var shake_amplitude = 0
+
+func add_shake(amp):
+	shake_amplitude += amp
+
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
@@ -86,6 +91,9 @@ func _process(delta):
 	$CannonProgress.value = cannon_energy
 	$ShieldProgress.value = $Shield.energy
 	$MovementProgress.value = movement_energy
+	
+	shake_amplitude = lerp(shake_amplitude, 0, delta * 3)
+	$Camera2D.offset = Vector2(rand_range(-shake_amplitude, shake_amplitude), rand_range(-shake_amplitude, shake_amplitude))
 	
 	$"UI/Hitpoints".value = hitpoints
 

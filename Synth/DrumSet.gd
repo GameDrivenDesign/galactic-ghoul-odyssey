@@ -41,7 +41,7 @@ func _on_MidiController_note_on(pitch, velocity, channel):
 		
 	if total_energy < 1.0:
 		return
-		
+	
 	total_energy -= 1.0
 
 	if pitch == kick:
