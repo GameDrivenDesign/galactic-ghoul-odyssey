@@ -3,6 +3,10 @@ extends Node
 var attack = 0.05
 var current = 0.0
 var active = false
+var base_volume_db = 0.0
+
+func _ready():
+	base_volume_db = $Sample.volume_db
 
 func play(pitch):
 	var c4 = 72
@@ -16,6 +20,8 @@ func play(pitch):
 	
 func stop():
 	active = false
+	if has_node("EndSample"):
+			$EndSample.play()
 	
 func _process(delta):
 	if active:
@@ -25,7 +31,5 @@ func _process(delta):
 		
 	if current == 0.0 and $Sample.playing:
 		$Sample.stop()
-		if has_node("EndSample"):
-			$EndSample.play()
 		
-	$Sample.set_volume_db((-1.0 + current) * 100)
+	$Sample.set_volume_db(base_volume_db + (-1.0 + current) * 100)
