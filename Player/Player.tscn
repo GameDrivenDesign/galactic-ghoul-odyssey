@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Shield/Shield.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/Spaceship2.png" type="Texture" id=4]
 [ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Rocket parts/spaceRocketParts_022.png" type="Texture" id=5]
 [ext_resource path="res://Synth/PolyVoice.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/progress/progress_bg.png" type="Texture" id=7]
+[ext_resource path="res://assets/progress/progress_fg.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 143.211
@@ -42,3 +44,43 @@ texture = ExtResource( 5 )
 offset = Vector2( 0.948525, -155.749 )
 
 [node name="PolyVoice" parent="." instance=ExtResource( 6 )]
+
+[node name="ShieldProgress" type="TextureProgress" parent="."]
+margin_left = -107.636
+margin_top = -16.4394
+margin_right = 359.364
+margin_bottom = 81.5606
+rect_scale = Vector2( 0.15, 0.15 )
+max_value = 20.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+
+[node name="DrumProgress" type="TextureProgress" parent="."]
+margin_left = -34.6123
+margin_top = -35.3787
+margin_right = 432.388
+margin_bottom = 62.6213
+rect_scale = Vector2( 0.15, 0.15 )
+max_value = 20.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+
+[node name="MovementProgress" type="TextureProgress" parent="."]
+margin_left = 43.8213
+margin_top = -29.12
+margin_right = 510.821
+margin_bottom = 68.88
+rect_scale = Vector2( 0.15, 0.15 )
+max_value = 20.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+
+[node name="CannonProgress" type="TextureProgress" parent="."]
+margin_left = -31.8291
+margin_top = -143.449
+margin_right = 435.171
+margin_bottom = -45.4489
+rect_scale = Vector2( 0.15, 0.15 )
+max_value = 20.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
