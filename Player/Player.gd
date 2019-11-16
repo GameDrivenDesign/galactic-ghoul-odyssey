@@ -74,6 +74,7 @@ func note_off(pitch, velocity, channel):
 	shoot()
 
 func shoot():
+	# $Cannon.global_rotation += 3
 	var direction = Vector2(0, -200).rotated($Cannon.global_rotation)
 	var projectile = preload("res://Player/Projectile.tscn").instance()
 	projectile.rotation_degrees = $Cannon.global_rotation_degrees
