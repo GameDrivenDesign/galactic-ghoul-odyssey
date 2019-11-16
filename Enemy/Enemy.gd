@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var hitpoints = 10
+
 func _ready():
 	pass
 

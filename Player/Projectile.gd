@@ -9,3 +9,9 @@ func _integrate_forces(state: Physics2DDirectBodyState):
 		contact.scale = Vector2(impact_speed, impact_speed)
 		get_parent().add_child(contact)
 		queue_free()
+		
+		var collider = state.get_contact_collider_object(i)
+		if collider.get("hitpoints") != null:
+			collider.hitpoints -= 1
+			if collider.hitpoints <= 0:
+				collider.queue_free()

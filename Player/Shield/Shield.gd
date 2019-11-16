@@ -25,13 +25,6 @@ func note_off(pitch, velocity, channel):
 		return
 	pressed_keys.erase(pitch)
 
-func add_circle(color, scale):
-	var circle = Sprite.new()
-	circle.texture = preload("res://assets/circle_white.png")
-	circle.scale = Vector2(scale, scale)
-	circle.modulate = color
-	add_child(circle)
-
 func _draw():
 	var i = active_shields.size() - 1
 	for shield in active_shields:
