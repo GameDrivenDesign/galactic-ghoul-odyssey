@@ -46,10 +46,10 @@ offset = Vector2( 0.948525, -155.749 )
 [node name="PolyVoice" parent="." instance=ExtResource( 6 )]
 
 [node name="ShieldProgress" type="TextureProgress" parent="."]
-margin_left = -107.636
-margin_top = -16.4394
-margin_right = 359.364
-margin_bottom = 81.5606
+margin_left = -107.917
+margin_top = -13.1259
+margin_right = 359.083
+margin_bottom = 84.8741
 rect_scale = Vector2( 0.15, 0.15 )
 max_value = 20.0
 texture_under = ExtResource( 7 )
@@ -81,6 +81,16 @@ margin_top = -143.449
 margin_right = 435.171
 margin_bottom = -45.4489
 rect_scale = Vector2( 0.15, 0.15 )
+max_value = 20.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hitpoints" type="TextureProgress" parent="UI"]
+margin_right = 467.0
+margin_bottom = 98.0001
+rect_scale = Vector2( 1, 0.5 )
 max_value = 20.0
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 8 )

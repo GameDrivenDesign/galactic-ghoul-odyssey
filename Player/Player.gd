@@ -9,7 +9,8 @@ const MIDI_CHANNEL = 0
 
 var cannon_energy = 0.0
 var movement_energy = 0.0
-var hitpoints = 100
+const MAX_HITPOINTS = 100
+var hitpoints = MAX_HITPOINTS
 
 var shake_amplitude = 0
 
@@ -19,6 +20,8 @@ func add_shake(amp):
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
+	
+	$"UI/Hitpoints".max_value = MAX_HITPOINTS
 
 func can_harm(projectile):
 	return $Shield.can_harm(projectile)
@@ -91,6 +94,8 @@ func _process(delta):
 	
 	shake_amplitude = lerp(shake_amplitude, 0, delta * 3)
 	$Camera2D.offset = Vector2(rand_range(-shake_amplitude, shake_amplitude), rand_range(-shake_amplitude, shake_amplitude))
+	
+	$"UI/Hitpoints".value = hitpoints
 
 func _integrate_forces(state: Physics2DDirectBodyState):
 	for i in range(state.get_contact_count()):
