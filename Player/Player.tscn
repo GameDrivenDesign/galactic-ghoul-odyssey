@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Shield/Shield.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Shield/Shield.gd" type="Script" id=3]
 [ext_resource path="res://assets/Spaceship2.png" type="Texture" id=4]
 [ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Rocket parts/spaceRocketParts_022.png" type="Texture" id=5]
-[ext_resource path="res://Synth/PolyVoiceCannon.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Synth/PolyVoiceShield.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/progress/progress_bg.png" type="Texture" id=8]
-[ext_resource path="res://assets/progress/progress_fg.png" type="Texture" id=9]
-[ext_resource path="res://assets/musician.png" type="Texture" id=10]
+[ext_resource path="res://assets/real_musician.png" type="Texture" id=6]
+[ext_resource path="res://Synth/PolyVoiceCannon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Synth/PolyVoiceShield.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/progress/progress_bg.png" type="Texture" id=9]
+[ext_resource path="res://assets/progress/progress_fg.png" type="Texture" id=10]
+[ext_resource path="res://assets/musician.png" type="Texture" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 143.211
@@ -40,14 +41,19 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="Cannon" type="Sprite" parent="."]
-position = Vector2( 0, -50.826 )
-scale = Vector2( 0.50754, 0.50754 )
+position = Vector2( -0.245463, -143.988 )
+scale = Vector2( 0.150664, 0.138903 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.948525, -155.749 )
 
-[node name="PolyVoiceCannon" parent="." instance=ExtResource( 6 )]
+[node name="real_musician" type="Sprite" parent="Cannon"]
+position = Vector2( 5.60322, 135.715 )
+scale = Vector2( 0.955715, 0.935608 )
+texture = ExtResource( 6 )
 
-[node name="PolyVoiceShield" parent="." instance=ExtResource( 7 )]
+[node name="PolyVoiceCannon" parent="." instance=ExtResource( 7 )]
+
+[node name="PolyVoiceShield" parent="." instance=ExtResource( 8 )]
 
 [node name="ShieldProgress" type="TextureProgress" parent="."]
 margin_left = -136.547
@@ -56,8 +62,8 @@ margin_right = 330.453
 margin_bottom = 72.4937
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 
 [node name="DrumProgress" type="TextureProgress" parent="."]
 margin_left = -77.1701
@@ -66,8 +72,8 @@ margin_right = 389.83
 margin_bottom = 31.6702
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 
 [node name="MovementProgress" type="TextureProgress" parent="."]
 margin_left = 17.5128
@@ -76,8 +82,8 @@ margin_right = 484.513
 margin_bottom = 59.5947
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 
 [node name="CannonProgress" type="TextureProgress" parent="."]
 margin_left = -58.9113
@@ -86,8 +92,8 @@ margin_right = 408.089
 margin_bottom = -64.7934
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 20.0
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -96,8 +102,8 @@ margin_right = 467.0
 margin_bottom = 98.0001
 rect_scale = Vector2( 1, 0.5 )
 max_value = 20.0
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 
 [node name="effect" type="Tween" parent="."]
 repeat = true
@@ -106,14 +112,14 @@ playback/repeat = true
 [node name="spaceperson1" type="Sprite" parent="."]
 position = Vector2( -71.4986, -8.34149 )
 scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="spaceperson2" type="Sprite" parent="."]
 position = Vector2( 3.57492, -21.8468 )
 scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="spaceperson3" type="Sprite" parent="."]
 position = Vector2( 79.4428, -13.1081 )
 scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
