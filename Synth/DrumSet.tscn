@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/drums/kick.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/drums/snare.wav" type="AudioStream" id=5]
 
-
 [node name="DrumSet" type="Node"]
 script = ExtResource( 1 )
 

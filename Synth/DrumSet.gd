@@ -5,8 +5,10 @@ const cowbell = 37
 const hihat = 44
 const snare = 45
 
+const MIDI_CHANNEL = 3
+
 func _on_MidiController_note_on(pitch, velocity, channel):
-	if channel != 3:
+	if channel != MIDI_CHANNEL:
 		return
 
 	if pitch == kick:

@@ -5,16 +5,22 @@ const ACCELERATION = 300
 var cannon_angle = 0
 var charge_start_time = 0
 
+const MIDI_CHANNEL = 0
+
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
 
 func note_on(pitch, velocity, channel):
+	if channel != MIDI_CHANNEL:
+		return
 	print(pitch)
 	cannon_angle = (pitch - 48) * 10
 	charge_start_time = OS.get_ticks_msec()
 
 func note_off(pitch, velocity, channel):
+	if channel != MIDI_CHANNEL:
+		return
 	shoot()
 
 func shoot():

@@ -1,21 +1,26 @@
 extends Node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var pressed_keys = []
 var circle_scale = 1.0
-# Called when the node enters the scene tree for the first time.
+
+const MIDI_CHANNEL = 0
+
 func _ready():
 	get_node("../..//MidiController").connect("note_on", self, "note_on")
 	get_node("../..//MidiController").connect("note_off", self, "note_off")
 	
 func note_on(pitch, velocity, channel):
+	if channel != MIDI_CHANNEL:
+		return
+
 	pressed_keys.append(pitch)
 	if len(pressed_keys) == 3:
 		analyze_chords(pressed_keys)
 		
 func note_off(pitch, velocity, channel):
+	if channel != MIDI_CHANNEL:
+		return
+
 	pressed_keys.erase(pitch)
 
 func add_circle(color, scale):
