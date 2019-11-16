@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Ships/spaceShips_004.png" type="Texture" id=2]
-[ext_resource path="res://Shield.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Shield.gd" type="Script" id=4]
-[ext_resource path="res://assets/circle_white.png" type="Texture" id=5]
-[ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Rocket parts/spaceRocketParts_022.png" type="Texture" id=6]
+[ext_resource path="res://assets/Spaceship2.png" type="Texture" id=2]
+[ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Rocket parts/spaceRocketParts_022.png" type="Texture" id=3]
+[ext_resource path="res://Shield.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Shield.gd" type="Script" id=5]
+[ext_resource path="res://assets/circle_white.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 67.0339
@@ -16,6 +16,7 @@ linear_damp = 4.0
 script = ExtResource( 1 )
 
 [node name="spaceShips_004" type="Sprite" parent="."]
+scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,12 +33,12 @@ drag_margin_bottom = 0.0
 [node name="Cannon" type="Sprite" parent="."]
 position = Vector2( 0, -0.826 )
 scale = Vector2( 0.50754, 0.50754 )
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 offset = Vector2( 0.948525, -155.749 )
 
-[node name="Shield" parent="." instance=ExtResource( 3 )]
-script = ExtResource( 4 )
+[node name="Shield" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 5 )
 
 [node name="Shield" type="Sprite" parent="Shield"]
 scale = Vector2( 0.255176, 0.267436 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
