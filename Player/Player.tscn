@@ -1,17 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/Spaceship2.png" type="Texture" id=2]
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Ships/spaceShips_004.png" type="Texture" id=2]
 [ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Rocket parts/spaceRocketParts_022.png" type="Texture" id=3]
-[ext_resource path="res://Shield.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Shield.gd" type="Script" id=5]
-[ext_resource path="res://assets/circle_white.png" type="Texture" id=6]
+[ext_resource path="res://Player/Shield/Shield.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Shield/Shield.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 67.0339
 
 [node name="Player" type="RigidBody2D"]
 mass = 10.0
+contacts_reported = 2
+contact_monitor = true
 linear_damp = 4.0
 script = ExtResource( 1 )
 
@@ -38,7 +39,3 @@ offset = Vector2( 0.948525, -155.749 )
 
 [node name="Shield" parent="." instance=ExtResource( 4 )]
 script = ExtResource( 5 )
-
-[node name="Shield" type="Sprite" parent="Shield"]
-scale = Vector2( 0.255176, 0.267436 )
-texture = ExtResource( 6 )

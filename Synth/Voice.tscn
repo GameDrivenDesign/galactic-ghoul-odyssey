@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Voice.gd" type="Script" id=1]
+[ext_resource path="res://Synth/Voice.gd" type="Script" id=1]
 [ext_resource path="res://assets/synth/aeolia_c4.wav" type="AudioStream" id=2]
+
 
 [node name="Voice" type="Node"]
 script = ExtResource( 1 )

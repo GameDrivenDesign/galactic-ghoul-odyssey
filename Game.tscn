@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Comet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://MidiController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://PolyVoice.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MidiController/MidiController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Synth/PolyVoice.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Synth/DrumSet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/blue.png" type="Texture" id=6]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_bloom = 0.79
+glow_hdr_threshold = 0.76
+glow_bicubic_upscale = true
+adjustment_enabled = true
 
 [node name="Game" type="Node2D"]
 
@@ -31,5 +41,23 @@ position = Vector2( 485, 62 )
 [node name="MidiController" parent="." instance=ExtResource( 3 )]
 
 [node name="PolyVoice" parent="." instance=ExtResource( 4 )]
+
+[node name="DrumSet" parent="." instance=ExtResource( 5 )]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_offset = Vector2( 80, 80 )
+motion_mirroring = Vector2( 1024, 600 )
+
+[node name="blue" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 512.671, 304.698 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 4096, 2400 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 [connection signal="note_off" from="MidiController" to="PolyVoice" method="_on_MidiController_note_off"]
+[connection signal="note_on" from="MidiController" to="DrumSet" method="_on_MidiController_note_on"]
 [connection signal="note_on" from="MidiController" to="PolyVoice" method="_on_MidiController_note_on"]
