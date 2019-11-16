@@ -11,11 +11,17 @@ func _ready():
 	get_node("../..//MidiController").connect("note_off", self, "note_off")
 	
 func note_on(pitch, velocity, channel):
+	if channel != 0:
+		return
+
 	pressed_keys.append(pitch)
 	if len(pressed_keys) == 3:
 		analyze_chords(pressed_keys)
 		
 func note_off(pitch, velocity, channel):
+	if channel != 0:
+		return
+
 	pressed_keys.erase(pitch)
 
 func add_circle(color, scale):
