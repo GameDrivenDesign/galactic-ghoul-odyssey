@@ -3,8 +3,8 @@ extends Node2D
 func _ready():
 	while true:
 		spawn_comets_nearby()
-		yield (get_tree().create_timer(2), "timeout")
-		spawn_enemy_nearby()
+		yield (get_tree().create_timer(8), "timeout")
+		#spawn_enemy_nearby()
 
 func spawn_enemy_nearby():
 	var enemy = preload("res://Enemy/Enemy.tscn").instance()

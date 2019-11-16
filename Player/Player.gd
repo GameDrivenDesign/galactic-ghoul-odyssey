@@ -105,9 +105,9 @@ func calculate_velocity_from_input(delta):
 func _process(delta):
 	$Cannon.rotation_degrees = lerp($Cannon.rotation_degrees, cannon_angle, delta * 5)
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		charge_start_time = OS.get_ticks_msec()
-		shoot()
+	#if Input.is_action_just_pressed("ui_accept"):
+	#	charge_start_time = OS.get_ticks_msec()
+	#	shoot()
 	
 	var velocity = calculate_velocity_from_input(delta)
 	
