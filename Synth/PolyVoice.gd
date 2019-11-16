@@ -5,12 +5,12 @@ export var voiceCount = 4
 var voices = {}
 var Voice = load("res://Synth/AttackVoice.tscn")
 
-func _on_MidiController_note_on(pitch, velocity, channel):
+func note_on(pitch, velocity, channel):
 	if channel != 0:
 		return
 	play(pitch)
 
-func _on_MidiController_note_off(pitch, velocity, channel):
+func note_off(pitch, velocity, channel):
 	if channel != 0:
 		return
 	stop(pitch)
