@@ -8,10 +8,10 @@ func play(pitch):
 	var c4 = 72
 	var offset = pitch - c4
 	var pitch_scale = pow(2, (offset / 12.0))
-	if !$aeolia_c4.playing:
-		$aeolia_c4.play()
-	$aeolia_c4.pitch_scale = pitch_scale
-	$aeolia_c4.set_volume_db(-80)
+	if !$Sample.playing:
+		$Sample.play()
+	$Sample.pitch_scale = pitch_scale
+	$Sample.set_volume_db(-80)
 	active = true
 	
 func stop():
@@ -23,7 +23,9 @@ func _process(delta):
 	if !active:
 		current = clamp(current - delta/attack, 0.0, 1.0)
 		
-	if current == 0.0:
-		$aeolia_c4.stop()
+	if current == 0.0 and $Sample.playing:
+		$Sample.stop()
+		if has_node("EndSample"):
+			$EndSample.play()
 		
-	$aeolia_c4.set_volume_db((-1.0 + current) * 100)
+	$Sample.set_volume_db((-1.0 + current) * 100)
