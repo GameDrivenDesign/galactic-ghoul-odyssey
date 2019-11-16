@@ -11,6 +11,11 @@ var cannon_energy = 0.0
 var movement_energy = 0.0
 var hitpoints = 100
 
+var shake_amplitude = 0
+
+func add_shake(amp):
+	shake_amplitude += amp
+
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
@@ -83,6 +88,9 @@ func _process(delta):
 	$CannonProgress.value = cannon_energy
 	$ShieldProgress.value = $Shield.energy
 	$MovementProgress.value = movement_energy
+	
+	shake_amplitude = lerp(shake_amplitude, 0, delta * 3)
+	$Camera2D.offset = Vector2(rand_range(-shake_amplitude, shake_amplitude), rand_range(-shake_amplitude, shake_amplitude))
 
 func _integrate_forces(state: Physics2DDirectBodyState):
 	for i in range(state.get_contact_count()):
