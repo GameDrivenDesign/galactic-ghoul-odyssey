@@ -40,7 +40,7 @@ fixed_fps = 16
 local_coords = false
 process_material = SubResource( 3 )
 
-[node name="spaceMissiles_001" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.15223, 1.15223 )
 texture = ExtResource( 2 )
 

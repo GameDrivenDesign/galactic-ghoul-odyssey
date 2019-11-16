@@ -1,7 +1,6 @@
 extends Node2D
 
 var pressed_keys = []
-var circle_scale = 1.0
 var active_shields = []
 
 const SHIELD_DURATION = 2
@@ -10,6 +9,12 @@ const MIDI_CHANNEL = 0
 
 var energy = 0.0
 
+func can_harm(projectile):
+	for shield in active_shields:
+		if shield.color == projectile.projectile_color:
+			return false
+	return true
+
 func _ready():
 	get_node("../..//MidiController").connect("note_on", self, "note_on")
 	get_node("../..//MidiController").connect("note_off", self, "note_off")
@@ -17,28 +22,39 @@ func _ready():
 func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
-		
-	if energy < 1.0:
-		return
-	energy -= 1.0
 
 	pressed_keys.append(pitch)
 	if len(pressed_keys) == 3:
+		if energy < 1.0:
+			return
+		energy -= 1.0
 		analyze_chords(pressed_keys)
 
 func note_off(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
+		
+	$"../PolyVoiceShield".stop(pitch)
+	
 	pressed_keys.erase(pitch)
+
+const ADD_BRIGHTNESS = 0.1
 
 func _draw():
 	var i = active_shields.size() - 1
 	for shield in active_shields:
 		draw_circle(Vector2(0, 0), 170 + i * 20, Color(0.18, 0.19, 0.211))
-		draw_circle(Vector2(0, 0), 170 + i * 20, Color(shield.color.r, shield.color.g, shield.color.b, shield.time))
+		draw_circle(Vector2(0, 0), 170 + i * 20,
+			Color(shield.color.r + ADD_BRIGHTNESS, shield.color.g + ADD_BRIGHTNESS, shield.color.b + ADD_BRIGHTNESS, shield.time))
 		i = i - 1
 
 func _process(delta):
+	for pitch in pressed_keys:
+		if energy >= 1.0:
+			$"../PolyVoiceShield".play(pitch)
+		else:
+			$"../PolyVoiceShield".stop(pitch)
+	
 	for shield in [] + active_shields:
 		shield['time'] -= delta
 		if shield['time'] <= 0:
@@ -62,18 +78,11 @@ func analyze_chords(notes):
 #	if (notes[1] - notes[0] > 4):
 #		notes[0] += 12
 #   print("Notes: " + str(notes[2] - notes[1]) + " " + str(notes[1] - notes[0]))
-	if (notes[2] - notes[1] == 3):
-		if (notes[1] - notes[0] == 4):
-			# $Shield.modulate = Color(1,0,0)
-			#add_circle(Color(1, 0, 0), circle_scale)
+	if notes[2] - notes[1] == 3:
+		if notes[1] - notes[0] == 4:
 			get_shield_of_color(Color(0, 1, 0))
-			circle_scale *= 1.5
 			print("Dur")
-	if (notes[2] - notes[1] == 4):
-		if (notes[1] - notes[0] == 3):
-			 # $Shield.modulate = Color(0,0,1)
-			#add_circle(Color(0, 0, 1), circle_scale)
+	if notes[2] - notes[1] == 4:
+		if notes[1] - notes[0] == 3:
 			get_shield_of_color(Color(1, 0, 0))
-			circle_scale *= 1.5
 			print("Moll")
-	pass

@@ -5,12 +5,19 @@ const ACCELERATION = 300
 var cannon_angle = 0
 var charge_start_time = 0
 
-const MIDI_CHANNEL = 0
+const MIDI_CHANNEL = 1
 
 onready var effect = get_node("effect")
 
 var cannon_energy = 0.0
 var movement_energy = 0.0
+const MAX_HITPOINTS = 100
+var hitpoints = MAX_HITPOINTS
+
+var shake_amplitude = 0
+
+func add_shake(amp):
+	shake_amplitude += amp
 
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
@@ -19,6 +26,7 @@ func _ready():
 	define_effects(get_node("spaceperson2"))
 	define_effects(get_node("spaceperson3"))
 	effect.start()
+	$"UI/Hitpoints".max_value = MAX_HITPOINTS
 
 func define_effects(sprite):
 	var old_vec = sprite.get_position()
@@ -39,20 +47,29 @@ func define_effects(sprite):
 		Tween.TRANS_BOUNCE,
 		Tween.EASE_IN)
 
+func can_harm(projectile):
+	return $Shield.can_harm(projectile)
+
 func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
-		
+	
 	if cannon_energy < 1.0:
 		return
 	cannon_energy -= 1.0
 	
+	$PolyVoiceCannon.note_on(pitch, velocity, channel)
+	
+	print(pitch)
 	cannon_angle = (pitch - 48) * 10
 	charge_start_time = OS.get_ticks_msec()
 
 func note_off(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
+		
+	$PolyVoiceCannon.note_off(pitch, velocity, channel)
+	
 	shoot()
 
 func shoot():
@@ -63,21 +80,23 @@ func shoot():
 	get_parent().add_child(projectile)
 	projectile.apply_central_impulse(linear_velocity + direction * 2 * max((OS.get_ticks_msec() - charge_start_time) / 200, 1))
 
-func calculate_velocity_from_input():
+func calculate_velocity_from_input(delta):
 	velocity = Vector2(0,0)
 	
-	if Input.is_action_pressed("ui_right") and movement_energy > 1.0:
+	if movement_energy < delta:
+		return velocity
+		
+	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_up"):
+		movement_energy -= delta
+	
+	if Input.is_action_pressed("ui_right"):
 		velocity.x = ACCELERATION
-		movement_energy -= 1.0
-	if Input.is_action_pressed("ui_down") and movement_energy > 1.0:
+	if Input.is_action_pressed("ui_down"):
 		velocity.y = ACCELERATION
-		movement_energy -= 1.0
-	if Input.is_action_pressed("ui_left") and movement_energy > 1.0:
+	if Input.is_action_pressed("ui_left"):
 		velocity.x = -ACCELERATION
-		movement_energy -= 1.0
-	if Input.is_action_pressed("ui_up") and movement_energy > 1.0:
+	if Input.is_action_pressed("ui_up"):
 		velocity.y = -ACCELERATION
-		movement_energy -= 1.0
 		
 	return velocity
 
@@ -88,10 +107,19 @@ func _process(delta):
 		charge_start_time = OS.get_ticks_msec()
 		shoot()
 	
-	var velocity = calculate_velocity_from_input()
+	var velocity = calculate_velocity_from_input(delta)
 	
 	add_central_force(velocity)
 	# move_and_collide (velocity)
+	
+	$CannonProgress.value = cannon_energy
+	$ShieldProgress.value = $Shield.energy
+	$MovementProgress.value = movement_energy
+	
+	shake_amplitude = lerp(shake_amplitude, 0, delta * 3)
+	$Camera2D.offset = Vector2(rand_range(-shake_amplitude, shake_amplitude), rand_range(-shake_amplitude, shake_amplitude))
+	
+	$"UI/Hitpoints".value = hitpoints
 
 func _integrate_forces(state: Physics2DDirectBodyState):
 	for i in range(state.get_contact_count()):
