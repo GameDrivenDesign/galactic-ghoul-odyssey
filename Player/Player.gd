@@ -9,11 +9,14 @@ const MIDI_CHANNEL = 0
 
 var cannon_energy = 0.0
 var movement_energy = 0.0
-var hitpoints = 100
+const MAX_HITPOINTS = 100
+var hitpoints = MAX_HITPOINTS
 
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
+	
+	$"UI/Hitpoints".max_value = MAX_HITPOINTS
 
 func can_harm(projectile):
 	return $Shield.can_harm(projectile)
@@ -83,6 +86,8 @@ func _process(delta):
 	$CannonProgress.value = cannon_energy
 	$ShieldProgress.value = $Shield.energy
 	$MovementProgress.value = movement_energy
+	
+	$"UI/Hitpoints".value = hitpoints
 
 func _integrate_forces(state: Physics2DDirectBodyState):
 	for i in range(state.get_contact_count()):
