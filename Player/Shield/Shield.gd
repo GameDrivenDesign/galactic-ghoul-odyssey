@@ -34,8 +34,8 @@ func note_off(pitch, velocity, channel):
 func _draw():
 	var i = active_shields.size() - 1
 	for shield in active_shields:
-		draw_circle(Vector2(0, 0), 90 + i * 20, Color(0.18, 0.19, 0.211))
-		draw_circle(Vector2(0, 0), 90 + i * 20, Color(shield.color.r, shield.color.g, shield.color.b, shield.time))
+		draw_circle(Vector2(0, 0), 170 + i * 20, Color(0.18, 0.19, 0.211))
+		draw_circle(Vector2(0, 0), 170 + i * 20, Color(shield.color.r, shield.color.g, shield.color.b, shield.time))
 		i = i - 1
 
 func _process(delta):
