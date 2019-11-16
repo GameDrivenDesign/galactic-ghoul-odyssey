@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Shield/Shield.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Synth/PolyVoiceShield.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/progress/progress_bg.png" type="Texture" id=8]
 [ext_resource path="res://assets/progress/progress_fg.png" type="Texture" id=9]
+[ext_resource path="res://assets/musician.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 143.211
@@ -39,7 +40,7 @@ drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
 [node name="Cannon" type="Sprite" parent="."]
-position = Vector2( 0, -0.826 )
+position = Vector2( 0, -50.826 )
 scale = Vector2( 0.50754, 0.50754 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.948525, -155.749 )
@@ -97,3 +98,22 @@ rect_scale = Vector2( 1, 0.5 )
 max_value = 20.0
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 9 )
+
+[node name="effect" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="spaceperson1" type="Sprite" parent="."]
+position = Vector2( -71.4986, -8.34149 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 10 )
+
+[node name="spaceperson2" type="Sprite" parent="."]
+position = Vector2( 3.57492, -21.8468 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 10 )
+
+[node name="spaceperson3" type="Sprite" parent="."]
+position = Vector2( 79.4428, -13.1081 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 10 )
