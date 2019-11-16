@@ -22,18 +22,20 @@ func _ready():
 func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
-		
-	if energy < 1.0:
-		return
-	energy -= 1.0
 
 	pressed_keys.append(pitch)
 	if len(pressed_keys) == 3:
+		if energy < 1.0:
+			return
+		energy -= 1.0
 		analyze_chords(pressed_keys)
 
 func note_off(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
+		
+	$"../PolyVoiceShield".stop(pitch)
+	
 	pressed_keys.erase(pitch)
 
 const ADD_BRIGHTNESS = 0.1
@@ -47,6 +49,12 @@ func _draw():
 		i = i - 1
 
 func _process(delta):
+	for pitch in pressed_keys:
+		if energy >= 1.0:
+			$"../PolyVoiceShield".play(pitch)
+		else:
+			$"../PolyVoiceShield".stop(pitch)
+	
 	for shield in [] + active_shields:
 		shield['time'] -= delta
 		if shield['time'] <= 0:

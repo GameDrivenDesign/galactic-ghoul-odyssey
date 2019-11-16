@@ -34,7 +34,7 @@ func note_on(pitch, velocity, channel):
 		return
 	cannon_energy -= 1.0
 	
-	$PolyVoice.note_on(pitch, velocity, channel)
+	$PolyVoiceCannon.note_on(pitch, velocity, channel)
 	
 	print(pitch)
 	cannon_angle = (pitch - 48) * 10
@@ -44,7 +44,7 @@ func note_off(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
 		
-	$PolyVoice.note_off(pitch, velocity, channel)
+	$PolyVoiceCannon.note_off(pitch, velocity, channel)
 	
 	shoot()
 
