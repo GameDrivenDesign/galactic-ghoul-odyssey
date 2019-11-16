@@ -10,6 +10,13 @@ const MIDI_CHANNEL = 0
 
 var energy = 0.0
 
+
+func can_harm(projectile):
+	for shield in active_shields:
+		if shield.color == projectile.projectile_color:
+			return false
+	return true
+
 func _ready():
 	get_node("../..//MidiController").connect("note_on", self, "note_on")
 	get_node("../..//MidiController").connect("note_off", self, "note_off")

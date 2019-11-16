@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+var projectile_color: Color
+
 func _integrate_forces(state: Physics2DDirectBodyState):
 	for i in range(state.get_contact_count()):
 		var impact_speed = min(linear_velocity.length() / 60, 2)
@@ -12,10 +14,12 @@ func _integrate_forces(state: Physics2DDirectBodyState):
 		
 		var collider = state.get_contact_collider_object(i)
 		if collider and collider.get("hitpoints") != null:
-			collider.hitpoints -= 1
-			if collider.hitpoints <= 0:
-				collider.queue_free()
+			if !collider.has_method("can_harm") or collider.can_harm(self):
+				collider.hitpoints -= 1
+				if collider.hitpoints <= 0:
+					collider.queue_free()
 
 func set_projectile_color(color: Color):
 	$Sprite.modulate = color
 	$Particles2D.modulate = color
+	projectile_color = color

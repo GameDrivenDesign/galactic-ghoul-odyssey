@@ -9,15 +9,19 @@ const MIDI_CHANNEL = 0
 
 var cannon_energy = 0.0
 var movement_energy = 0.0
+var hitpoints = 100
 
 func _ready():
 	get_node("..//MidiController").connect("note_on", self, "note_on")
 	get_node("..//MidiController").connect("note_off", self, "note_off")
 
+func can_harm(projectile):
+	return $Shield.can_harm(projectile)
+
 func note_on(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
-		
+	
 	if cannon_energy < 1.0:
 		return
 	cannon_energy -= 1.0
