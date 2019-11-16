@@ -20,7 +20,7 @@ func play(pitch):
 	
 func stop():
 	active = false
-	if has_node("EndSample"):
+	if has_node("EndSample") and $Sample.playing:
 			$EndSample.play()
 	
 func _process(delta):

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Shield/Shield.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/Shield/Shield.gd" type="Script" id=3]
 [ext_resource path="res://assets/Spaceship2.png" type="Texture" id=4]
 [ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Rocket parts/spaceRocketParts_022.png" type="Texture" id=5]
+[ext_resource path="res://Synth/PolyVoice.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 67.0339
@@ -39,3 +40,5 @@ position = Vector2( 0, -0.826 )
 scale = Vector2( 0.50754, 0.50754 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.948525, -155.749 )
+
+[node name="PolyVoice" parent="." instance=ExtResource( 6 )]

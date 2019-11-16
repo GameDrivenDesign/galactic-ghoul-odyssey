@@ -22,6 +22,8 @@ func note_on(pitch, velocity, channel):
 		return
 	cannon_energy -= 1.0
 	
+	$PolyVoice.note_on(pitch, velocity, channel)
+	
 	print(pitch)
 	cannon_angle = (pitch - 48) * 10
 	charge_start_time = OS.get_ticks_msec()
@@ -29,6 +31,9 @@ func note_on(pitch, velocity, channel):
 func note_off(pitch, velocity, channel):
 	if channel != MIDI_CHANNEL:
 		return
+		
+	$PolyVoice.note_off(pitch, velocity, channel)
+	
 	shoot()
 
 func shoot():
@@ -42,18 +47,20 @@ func shoot():
 func calculate_velocity_from_input():
 	velocity = Vector2(0,0)
 	
-	if Input.is_action_pressed("ui_right") and movement_energy > 1.0:
+	if movement_energy < 1.0:
+		return velocity
+		
+	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_up"):
+		movement_energy -= 1.0
+	
+	if Input.is_action_pressed("ui_right"):
 		velocity.x = ACCELERATION
-		movement_energy -= 1.0
-	if Input.is_action_pressed("ui_down") and movement_energy > 1.0:
+	if Input.is_action_pressed("ui_down"):
 		velocity.y = ACCELERATION
-		movement_energy -= 1.0
-	if Input.is_action_pressed("ui_left") and movement_energy > 1.0:
+	if Input.is_action_pressed("ui_left"):
 		velocity.x = -ACCELERATION
-		movement_energy -= 1.0
-	if Input.is_action_pressed("ui_up") and movement_energy > 1.0:
+	if Input.is_action_pressed("ui_up"):
 		velocity.y = -ACCELERATION
-		movement_energy -= 1.0
 		
 	return velocity
 
