@@ -46,6 +46,7 @@ func _on_MidiController_note_on(pitch, velocity, channel):
 
 	if pitch == kick:
 		$Kick.play()
+		player.add_shake(3)
 		player.movement_energy = min(player.movement_energy + 1.0, MAX_ENERGY)
 	if pitch == cowbell:
 		$Cowbell.play()

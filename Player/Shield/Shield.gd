@@ -1,7 +1,6 @@
 extends Node2D
 
 var pressed_keys = []
-var circle_scale = 1.0
 var active_shields = []
 
 const SHIELD_DURATION = 2
@@ -9,7 +8,6 @@ const SHIELD_DURATION = 2
 const MIDI_CHANNEL = 0
 
 var energy = 0.0
-
 
 func can_harm(projectile):
 	for shield in active_shields:
@@ -73,18 +71,11 @@ func analyze_chords(notes):
 #	if (notes[1] - notes[0] > 4):
 #		notes[0] += 12
 #   print("Notes: " + str(notes[2] - notes[1]) + " " + str(notes[1] - notes[0]))
-	if (notes[2] - notes[1] == 3):
-		if (notes[1] - notes[0] == 4):
-			# $Shield.modulate = Color(1,0,0)
-			#add_circle(Color(1, 0, 0), circle_scale)
+	if notes[2] - notes[1] == 3:
+		if notes[1] - notes[0] == 4:
 			get_shield_of_color(Color(0, 1, 0))
-			circle_scale *= 1.5
 			print("Dur")
-	if (notes[2] - notes[1] == 4):
-		if (notes[1] - notes[0] == 3):
-			 # $Shield.modulate = Color(0,0,1)
-			#add_circle(Color(0, 0, 1), circle_scale)
+	if notes[2] - notes[1] == 4:
+		if notes[1] - notes[0] == 3:
 			get_shield_of_color(Color(1, 0, 0))
-			circle_scale *= 1.5
 			print("Moll")
-	pass
