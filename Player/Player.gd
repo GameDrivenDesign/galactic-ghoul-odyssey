@@ -75,6 +75,10 @@ func _process(delta):
 	
 	add_central_force(velocity)
 	# move_and_collide (velocity)
+	
+	$CannonProgress.value = cannon_energy
+	$ShieldProgress.value = $Shield.energy
+	$MovementProgress.value = movement_energy
 
 func _integrate_forces(state: Physics2DDirectBodyState):
 	for i in range(state.get_contact_count()):

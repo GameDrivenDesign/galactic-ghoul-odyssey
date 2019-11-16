@@ -8,7 +8,7 @@ const snare = 45
 const MIDI_CHANNEL = 3
 
 var total_energy = 0.0
-const MAX_ENERGY = 100
+const MAX_ENERGY = 20
 
 const ENERGY_PER_SECOND = 2.0
 
@@ -46,15 +46,16 @@ func _on_MidiController_note_on(pitch, velocity, channel):
 
 	if pitch == kick:
 		$Kick.play()
-		player.movement_energy += 1.0
+		player.movement_energy = min(player.movement_energy + 1.0, MAX_ENERGY)
 	if pitch == cowbell:
 		$Cowbell.play()
 	if pitch == hihat:
 		$Hihat.play()
-		shield.energy += 1.0
+		shield.energy = min(shield.energy + 1.0, MAX_ENERGY)
 	if pitch == snare:
 		$Snare.play()
-		player.cannon_energy += 1.0
+		player.cannon_energy = min(player.cannon_energy + 1.0, MAX_ENERGY)
 
 func _process(delta):
 	total_energy = clamp(total_energy + ENERGY_PER_SECOND * delta, 0.0, MAX_ENERGY)
+	player.get_node("DrumProgress").value = total_energy
