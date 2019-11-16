@@ -1,15 +1,20 @@
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	$MidiController.connect("note_on", self, "_on_midicontroller_note_on")
-	$MidiController.connect("note_off", self, "_on_midicontroller_note_off")
-	pass # Replace with function body.
+	while true:
+		spawn_comets_nearby()
+		yield (get_tree().create_timer(2), "timeout")
+		spawn_enemy_nearby()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func spawn_enemy_nearby():
+	var enemy = preload("res://Enemy/Enemy.tscn").instance()
+	enemy.position = $Player.position + Vector2(rand_range(2000, 6000), 0).rotated(rand_range(0, 2 * PI))
+	add_child(enemy)
+
+func spawn_comets_nearby():
+	var Comet = preload("res://Comet.tscn")
+	for i in range(10):
+		var comet = Comet.instance()
+		comet.position = $Player.position + Vector2(rand_range(2000, 6000), 0).rotated(rand_range(0, 2 * PI))
+		comet.rotation_degrees = rand_range(0, 360)
+		add_child(comet)

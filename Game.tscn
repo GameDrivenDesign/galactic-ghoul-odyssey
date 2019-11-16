@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Comet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://MidiController/MidiController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Synth/PolyVoice.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Synth/DrumSet.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/blue.png" type="Texture" id=6]
+[ext_resource path="res://Game.gd" type="Script" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Comet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MidiController/MidiController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Synth/PolyVoice.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Synth/DrumSet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/blue.png" type="Texture" id=7]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -16,33 +17,34 @@ glow_bicubic_upscale = true
 adjustment_enabled = true
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 1 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 506.451, 323.893 )
 
-[node name="RigidBody" parent="." instance=ExtResource( 2 )]
+[node name="RigidBody" parent="." instance=ExtResource( 3 )]
 position = Vector2( 198, -128 )
 
-[node name="RigidBody3" parent="." instance=ExtResource( 2 )]
+[node name="RigidBody3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 218, 93 )
 
-[node name="RigidBody4" parent="." instance=ExtResource( 2 )]
+[node name="RigidBody4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 818, 31 )
 
-[node name="RigidBody5" parent="." instance=ExtResource( 2 )]
+[node name="RigidBody5" parent="." instance=ExtResource( 3 )]
 position = Vector2( 225, 352 )
 
-[node name="RigidBody6" parent="." instance=ExtResource( 2 )]
+[node name="RigidBody6" parent="." instance=ExtResource( 3 )]
 position = Vector2( 804, 255 )
 
-[node name="RigidBody2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 485, 62 )
+[node name="RigidBody2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 893, -253 )
 
-[node name="MidiController" parent="." instance=ExtResource( 3 )]
+[node name="MidiController" parent="." instance=ExtResource( 4 )]
 
-[node name="PolyVoice" parent="." instance=ExtResource( 4 )]
+[node name="PolyVoice" parent="." instance=ExtResource( 5 )]
 
-[node name="DrumSet" parent="." instance=ExtResource( 5 )]
+[node name="DrumSet" parent="." instance=ExtResource( 6 )]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -51,13 +53,13 @@ motion_offset = Vector2( 80, 80 )
 motion_mirroring = Vector2( 1024, 600 )
 
 [node name="blue" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 512.671, 304.698 )
-texture = ExtResource( 6 )
+position = Vector2( 633.671, 289.698 )
+texture = ExtResource( 7 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4096, 2400 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 [connection signal="note_off" from="MidiController" to="PolyVoice" method="_on_MidiController_note_off"]
-[connection signal="note_on" from="MidiController" to="DrumSet" method="_on_MidiController_note_on"]
 [connection signal="note_on" from="MidiController" to="PolyVoice" method="_on_MidiController_note_on"]
+[connection signal="note_on" from="MidiController" to="DrumSet" method="_on_MidiController_note_on"]
