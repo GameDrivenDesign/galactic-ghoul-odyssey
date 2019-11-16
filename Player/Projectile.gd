@@ -2,7 +2,7 @@ extends RigidBody2D
 
 func _integrate_forces(state: Physics2DDirectBodyState):
 	for i in range(state.get_contact_count()):
-		var impact_speed = linear_velocity.length() / 60
+		var impact_speed = min(linear_velocity.length() / 60, 2)
 		var contact = preload("res://hit_particles.tscn").instance()
 		contact.position = state.get_contact_local_position(i)
 		contact.rotation = state.get_contact_local_normal(i).angle() + PI
