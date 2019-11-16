@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Ships/spaceShips_004.png" type="Texture" id=2]
+[ext_resource path="res://assets/Spaceship2.png" type="Texture" id=2]
 [ext_resource path="res://assets/kenney_spaceshooterextension/PNG/Sprites/Rocket parts/spaceRocketParts_022.png" type="Texture" id=3]
 [ext_resource path="res://Player/Shield/Shield.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Shield/Shield.gd" type="Script" id=5]
